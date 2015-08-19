@@ -34,6 +34,7 @@ class MessageUIView: UIView {
     var recieverDrawView:UIImageView! = UIImageView()
 
     
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

@@ -15,14 +15,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        
-        
-        //UINavigationBar.appearance().setBackgroundImage(UIImage(named: "IPhone_icon_red"), forBarMetrics: UIBarMetrics.Default)
-        //UINavigationBar.appearance().translucent = true
-        
-        //UINavigationBar.appearance().setBackgroundImage(UIImage(named: "IPhone_icon_red"), forBarPosition: UIBarPosition.Top, barMetrics: UIBarMetrics.Default)
-        // Override point for customization after application launch.
-
 
         return true
     }

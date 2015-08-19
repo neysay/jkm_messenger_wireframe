@@ -26,7 +26,6 @@ class KeyboardInputView: UIView, UITextViewDelegate {
     var recipientTextField:UITextField! = UITextField()
     var recipientToolBar:UIToolbar! = UIToolbar()
     var recipientAddButton:UIButton! = UIButton.buttonWithType(UIButtonType.ContactAdd) as! UIButton
-    
     var currentTextHeight:CGFloat = 0.0
     var keyboardHeight:CGFloat? = nil
     

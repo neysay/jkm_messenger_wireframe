@@ -27,7 +27,6 @@ class TextInputViewController: UIViewController , UITableViewDataSource , UITabl
         self.tableView.scrollsToTop = true
         self.tableView.separatorColor = UIColor.clearColor()
         
-        
         self.userInputView.autoresizingMask = UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleHeight
         self.userInputView.userContentView = self.tableView
         self.view.addSubview(self.userInputView)
