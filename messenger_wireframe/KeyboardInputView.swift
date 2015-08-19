@@ -9,8 +9,6 @@
 import UIKit
 
 class KeyboardInputView: UIView, UITextViewDelegate {
-
-
     let KEYBOARD_INPUT_VIEW_MARGIN_VERTICAL:Float = 3.0
     let KEYBOARD_INPUT_VIEW_MARGIN_HORIZONTAL:Float = 8.0
     let KEYBOARD_INPUT_VIEW_MARGIN_BUTTONS_VERTICAL:Float = 7.0
@@ -47,12 +45,7 @@ class KeyboardInputView: UIView, UITextViewDelegate {
         super.init(frame: frame)
         //self.setupSubViews()
     }
-    
-    func setActiveUserContentView(newContentView:UIScrollView)
-    {
-        self.userContentView = newContentView
-    }
-    
+
     deinit{
         self.unregisterNotifications()
     }
@@ -68,7 +61,6 @@ class KeyboardInputView: UIView, UITextViewDelegate {
     }
     
     func setupSubViews(){
-        //self.inputToolBar = UIToolbar(frame: frame)
         
         self.inputToolBar.translucent = true
         self.recipientToolBar.translucent = true
@@ -80,16 +72,12 @@ class KeyboardInputView: UIView, UITextViewDelegate {
         self.userContentView.autoresizingMask = UIViewAutoresizing.FlexibleHeight | UIViewAutoresizing.FlexibleWidth
         self.recipientView.autoresizingMask = UIViewAutoresizing.FlexibleHeight | UIViewAutoresizing.FlexibleWidth
         
-        //self.addSubview(self.controlView)
-        
         self.setupTextView()
         self.setupLeftButton()
         self.setupRightButton()
         self.setupToLabel()
         self.setupRecipientTextField()
         self.setupRecipientAddButton()
-        
-        
         
         self.controlView.addSubview(self.inputToolBar)
         self.controlView.addSubview(self.inputTextView)
@@ -105,15 +93,10 @@ class KeyboardInputView: UIView, UITextViewDelegate {
         self.addSubview(self.recipientView)
         self.addSubview(self.controlView)
         
-        //self.inputTextView.inputAccessoryView = self.controlView.copy() as UIView
-        
-        //self.setupConstraints()
-        
     }
     
     func setupTextView(){
         self.inputTextView.font = UIFont.systemFontOfSize(14.0)
-        //self.inputTextView.font = UIFont.preferredFontForTextStyle(UIFontTextStyleBody)
         self.inputTextView.layer.cornerRadius = 5.0
         self.inputTextView.layer.borderWidth = 1.0
         self.inputTextView.layer.borderColor = UIColor.blackColor().CGColor
@@ -126,8 +109,6 @@ class KeyboardInputView: UIView, UITextViewDelegate {
         self.leftButton.setTitle("Options", forState: UIControlState.Normal)
         self.leftButton.setTitleColor(UIColor.purpleColor(), forState: UIControlState.Normal)
         self.leftButton.setTitleColor(UIColor.yellowColor(), forState: UIControlState.Highlighted)
-
-        
     }
     
     func setupRightButton(){
@@ -141,7 +122,6 @@ class KeyboardInputView: UIView, UITextViewDelegate {
     }
     
     func setupToLabel() {
-        //self.toLabel.backgroundColor = UIColor.magentaColor()
         self.toLabel.text = "To: "
         self.toLabel.textAlignment = NSTextAlignment.Left
         self.toLabel.numberOfLines = 1
@@ -149,28 +129,23 @@ class KeyboardInputView: UIView, UITextViewDelegate {
     }
     
     func setupRecipientTextField(){
-        //self.recipientTextField.backgroundColor = UIColor.yellowColor()
         self.recipientTextField.textAlignment = NSTextAlignment.Left
         self.recipientTextField.font = UIFont.systemFontOfSize(15.0)
     }
 
     func setupRecipientAddButton(){
-        //self.recipientAddButton.bu = UIButtonType.ContactAdd
         self.recipientAddButton.backgroundColor = UIColor.clearColor()
+        //Add button management code here//
     }
     
     func getInputViewHeight() -> CGFloat{
         var newInputHeight = self.getTextViewHeight(self.inputTextView)
-        
         newInputHeight = newInputHeight + (2 * CGFloat(KEYBOARD_INPUT_VIEW_MARGIN_VERTICAL))
         newInputHeight = ceil(newInputHeight)
         
-        var height:CGFloat = 33.895000
-        if self.maxInputTextHeight != nil {
+        var height:CGFloat = newInputHeight
+        if let maxHeight = self.maxInputTextHeight {
             height = min(newInputHeight,self.maxInputTextHeight!)
-        }
-        else{
-            height = newInputHeight
         }
         height = floor(height)
         
@@ -192,17 +167,13 @@ class KeyboardInputView: UIView, UITextViewDelegate {
             height = 0.0
         }
         else{
-            height = 35.0
+            height = 35.0 // default
         }
-        //println("recipient view height: \(height)")
+
         return height
     }
-
-    
     
     func setupConstraints(){
-        
-        // Calculate frame with current settings
         let textViewHeight = self.getInputViewHeight()
         self.leftButton.sizeToFit()
         self.rightButton.sizeToFit()
@@ -368,16 +339,10 @@ class KeyboardInputView: UIView, UITextViewDelegate {
     }
     
     func textViewDidChange(textView: UITextView) {
-        
         let textViewH = self.getInputViewHeight()
         
         // turn on/off ability to send text messages
-        if (textView.text as NSString).length == 0 {
-            self.rightButton.enabled = false
-        }
-        else if ((textView.text as NSString).length >= 1) && (!self.rightButton.enabled) {
-            self.rightButton.enabled = true
-        }
+        self.rightButton.enabled = !textView.text.isEmpty
         
         if textViewH != self.currentTextHeight {
             self.updateConstaintsAndSetActiveTo(true)
@@ -406,8 +371,7 @@ class KeyboardInputView: UIView, UITextViewDelegate {
     }
     
     func scrollToBottomOfContent(animated:Bool, offset:CGFloat = 0.0){
-        
-        //Scroll us to the bottom
+        //Scroll to the bottom
         let viewRect = CGRect(x: 0, y: self.userContentView.contentSize.height - self.userContentView.frame.height, width: self.userContentView.frame.width, height: self.userContentView.frame.height)
 
         //Offset allows for consideration of keyboard displayed, typing indicators, etc...
@@ -435,7 +399,6 @@ class KeyboardInputView: UIView, UITextViewDelegate {
         })
 
     }
-    
     
     func keyboardWillHide(notification: NSNotification){
         let info:NSDictionary = notification.userInfo as NSDictionary!

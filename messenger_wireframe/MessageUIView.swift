@@ -34,7 +34,6 @@ class MessageUIView: UIView {
     var recieverDrawView:UIImageView! = UIImageView()
 
     
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -70,8 +69,6 @@ class MessageUIView: UIView {
 
         //For debugging only
         //self.setUniqueColorForViews()
-        
-        
     }
     
     
@@ -118,6 +115,10 @@ class MessageUIView: UIView {
     }
     
     func setupViews() {
+        
+        self.recieverImageView.contentMode = UIViewContentMode.ScaleAspectFit
+        self.senderImageView.contentMode = UIViewContentMode.ScaleAspectFit
+        
         self.senderView.addSubview(self.senderImageView)
         self.senderView.addSubview(self.senderCushion)
         self.senderView.addSubview(self.senderBubbleView)
@@ -182,14 +183,11 @@ class MessageUIView: UIView {
             }
 
         }
-        
         self.infoView.addConstraints(constraints)
-
+        
         visualFormat = "H:|-[recieverSpace(<=\(self.profileSize + self.messageBubbleWidth))][info][senderSpace(<=\(self.profileSize + self.messageBubbleWidth))]-|"
         constraints = NSLayoutConstraint.constraintsWithVisualFormat(visualFormat!, options: NSLayoutFormatOptions(0), metrics: nil, views: views as [NSObject : AnyObject])
         self.addConstraints(constraints)
-        
-        
         
         self.setupMessageConstraints()
 
@@ -292,46 +290,34 @@ class MessageUIView: UIView {
     }
     
     func setProfile(profileImage:UIImage?=nil) {
-        //Sets profile image on correct side, hides unused side
-        var profilePic:UIImage!
-        if profileImage == nil {
-            profilePic = self.defaultProfileImage
-        }
-        else {
-            profilePic = profileImage!
-        }
-
+        //Hide sender only if message not coming from user
+        self.senderView.hidden = !self.isSender
+        //Hide reciever only if message is coming from user
+        self.recieverView.hidden = self.isSender
         
         if self.isSender {
-            self.senderView.hidden = false
-            self.recieverView.hidden = true
-            
-            if (self.senderImageView.image == nil) || (!self.senderImageView.image!.isEqual(profilePic)) {
-                self.senderImageView.contentMode = UIViewContentMode.ScaleAspectFit
-                self.senderImageView.image = profilePic
-            }
-
+            self._setProfileImage(self.senderImageView, sourceImage: profileImage)
             if self.messageView.backgroundColor != self.senderColor {
                 self.messageView.backgroundColor = self.senderColor
             }
-
             
         }
         else {
-            self.recieverView.hidden = false
-            self.senderView.hidden = true
-            
-            if (self.recieverImageView.image == nil) || (!self.recieverImageView.image!.isEqual(profilePic)) {
-                self.recieverImageView.contentMode = UIViewContentMode.ScaleAspectFit
-                self.recieverImageView.image = profilePic
-            }
-
+            self._setProfileImage(self.recieverImageView, sourceImage: profileImage)
             if self.messageView.backgroundColor != self.recieverColor {
                 self.messageView.backgroundColor = self.recieverColor
             }
-            
         }
 
+    }
+    
+    func _setProfileImage(destImageView:UIImageView!, sourceImage:UIImage?){
+        if let currentImageView = destImageView.image, let image = sourceImage where currentImageView != image {
+            destImageView.image = sourceImage
+        }
+        else {
+            destImageView.image = self.defaultProfileImage
+        }
     }
     
 }

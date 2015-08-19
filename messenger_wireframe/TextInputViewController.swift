@@ -39,24 +39,16 @@ class TextInputViewController: UIViewController , UITableViewDataSource , UITabl
         self.userInputView.recipientView.hidden = true
         self.userInputView.updateConstaintsAndSetActiveTo(true)
 
-
     }
-
-
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
-        //MAINT: for some reason scrollview comes in with top offset
-        //So we negate it , for now
-        
-        //self.userInputView.updateConstaintsAndSetActiveTo(true)
-        self.userInputView.userContentView.contentInset.top = 0
+        self.userInputView.userContentView.contentInset.top = 5.0
         if !self.userInputView.recipientView.hidden {
             self.userInputView.recipientTextField.becomeFirstResponder()
         }
 
-        //self.verticalViewTest.setupConstraints(false)
     }
     
     func navigationBarSetup() {
@@ -88,8 +80,6 @@ class TextInputViewController: UIViewController , UITableViewDataSource , UITabl
             }, completion: {_ in
                 //nil
         })
-        
-        
     }
     
     override func didReceiveMemoryWarning() {
@@ -130,8 +120,6 @@ class TextInputViewController: UIViewController , UITableViewDataSource , UITabl
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
-    
-    
     
     
 }

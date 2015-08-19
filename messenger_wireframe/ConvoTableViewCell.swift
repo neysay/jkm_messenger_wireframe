@@ -39,12 +39,7 @@ class ConvoTableViewCell: UITableViewCell {
     }
     
     func hasActiveConstraints() -> Bool {
-        if self.messageItem.hasActiveConstraints() || (self.constraints().count > 0) {
-            return true
-        }
-        else {
-            return false
-        }
+        return self.messageItem.hasActiveConstraints()
     }
     
     func setupConstraints() {
