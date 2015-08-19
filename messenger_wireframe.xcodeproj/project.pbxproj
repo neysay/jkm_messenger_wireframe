@@ -7,12 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7709EF511B851A6900980977 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7709EF501B851A6900980977 /* AppDelegate.swift */; };
-		7709EF531B851A6900980977 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7709EF521B851A6900980977 /* ViewController.swift */; };
 		7709EF561B851A6900980977 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7709EF541B851A6900980977 /* Main.storyboard */; };
 		7709EF581B851A6900980977 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7709EF571B851A6900980977 /* Images.xcassets */; };
 		7709EF5B1B851A6900980977 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7709EF591B851A6900980977 /* LaunchScreen.xib */; };
 		7709EF671B851A6900980977 /* messenger_wireframeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7709EF661B851A6900980977 /* messenger_wireframeTests.swift */; };
+		7709EF731B851B2200980977 /* KeyboardInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7709EF701B851B2200980977 /* KeyboardInputView.swift */; };
+		7709EF741B851B2200980977 /* MessageUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7709EF711B851B2200980977 /* MessageUIView.swift */; };
+		7709EF751B851B2200980977 /* TextInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7709EF721B851B2200980977 /* TextInputViewController.swift */; };
+		7709EF791B851B8800980977 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7709EF781B851B8800980977 /* AppDelegate.swift */; };
+		7709EF7B1B851BB500980977 /* ConvoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7709EF7A1B851BB500980977 /* ConvoTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -28,14 +31,17 @@
 /* Begin PBXFileReference section */
 		7709EF4B1B851A6900980977 /* messenger_wireframe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = messenger_wireframe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7709EF4F1B851A6900980977 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		7709EF501B851A6900980977 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		7709EF521B851A6900980977 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		7709EF551B851A6900980977 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		7709EF571B851A6900980977 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		7709EF5A1B851A6900980977 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		7709EF601B851A6900980977 /* messenger_wireframeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = messenger_wireframeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7709EF651B851A6900980977 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7709EF661B851A6900980977 /* messenger_wireframeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = messenger_wireframeTests.swift; sourceTree = "<group>"; };
+		7709EF701B851B2200980977 /* KeyboardInputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardInputView.swift; sourceTree = "<group>"; };
+		7709EF711B851B2200980977 /* MessageUIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageUIView.swift; sourceTree = "<group>"; };
+		7709EF721B851B2200980977 /* TextInputViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextInputViewController.swift; sourceTree = "<group>"; };
+		7709EF781B851B8800980977 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		7709EF7A1B851BB500980977 /* ConvoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConvoTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,8 +83,11 @@
 		7709EF4D1B851A6900980977 /* messenger_wireframe */ = {
 			isa = PBXGroup;
 			children = (
-				7709EF501B851A6900980977 /* AppDelegate.swift */,
-				7709EF521B851A6900980977 /* ViewController.swift */,
+				7709EF7A1B851BB500980977 /* ConvoTableViewCell.swift */,
+				7709EF781B851B8800980977 /* AppDelegate.swift */,
+				7709EF701B851B2200980977 /* KeyboardInputView.swift */,
+				7709EF711B851B2200980977 /* MessageUIView.swift */,
+				7709EF721B851B2200980977 /* TextInputViewController.swift */,
 				7709EF541B851A6900980977 /* Main.storyboard */,
 				7709EF571B851A6900980977 /* Images.xcassets */,
 				7709EF591B851A6900980977 /* LaunchScreen.xib */,
@@ -212,8 +221,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7709EF531B851A6900980977 /* ViewController.swift in Sources */,
-				7709EF511B851A6900980977 /* AppDelegate.swift in Sources */,
+				7709EF791B851B8800980977 /* AppDelegate.swift in Sources */,
+				7709EF7B1B851BB500980977 /* ConvoTableViewCell.swift in Sources */,
+				7709EF751B851B2200980977 /* TextInputViewController.swift in Sources */,
+				7709EF741B851B2200980977 /* MessageUIView.swift in Sources */,
+				7709EF731B851B2200980977 /* KeyboardInputView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -409,6 +421,7 @@
 				7709EF6C1B851A6900980977 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		7709EF6D1B851A6900980977 /* Build configuration list for PBXNativeTarget "messenger_wireframeTests" */ = {
 			isa = XCConfigurationList;
@@ -417,6 +430,7 @@
 				7709EF6F1B851A6900980977 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -1,9 +1,9 @@
 //
 //  AppDelegate.swift
-//  messenger_wireframe
+//  TextInputModalTest
 //
-//  Created by Jacob Melvin on 8/19/15.
-//  Copyright (c) 2015 Jacob Melvin. All rights reserved.
+//  Created by Jacob Melvin on 11/27/14.
+//  Copyright (c) 2014 Jacob Melvin. All rights reserved.
 //
 
 import UIKit
@@ -15,8 +15,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        
+        
+        //UINavigationBar.appearance().setBackgroundImage(UIImage(named: "IPhone_icon_red"), forBarMetrics: UIBarMetrics.Default)
+        //UINavigationBar.appearance().translucent = true
+        
+        //UINavigationBar.appearance().setBackgroundImage(UIImage(named: "IPhone_icon_red"), forBarPosition: UIBarPosition.Top, barMetrics: UIBarMetrics.Default)
         // Override point for customization after application launch.
+
+
         return true
+    }
+    
+    func application(application: UIApplication, didRegisterUserNotificationSettings notificationSettings: UIUserNotificationSettings) {
+        UIApplication.sharedApplication().registerForRemoteNotifications()
+    }
+    
+    func application(application: UIApplication,didFailToRegisterForRemoteNotificationsWithError error: NSError){
+        println(error.localizedDescription)
     }
 
     func applicationWillResignActive(application: UIApplication) {
