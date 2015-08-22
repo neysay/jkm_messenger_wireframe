@@ -142,14 +142,13 @@ class KeyboardInputView: UIView, UITextViewDelegate {
         var newInputHeight = self.getTextViewHeight(self.inputTextView)
         newInputHeight = newInputHeight + (2 * CGFloat(KEYBOARD_INPUT_VIEW_MARGIN_VERTICAL))
         newInputHeight = ceil(newInputHeight)
-        
-        var height:CGFloat = newInputHeight
+
         if let maxHeight = self.maxInputTextHeight {
-            height = min(newInputHeight,self.maxInputTextHeight!)
+            return floor(min(newInputHeight,maxHeight))
         }
-        height = floor(height)
-        
-        return height
+        else {
+            return newInputHeight
+        }
         
     }
     
@@ -180,11 +179,11 @@ class KeyboardInputView: UIView, UITextViewDelegate {
         self.toLabel.sizeToFit()
         self.recipientAddButton.sizeToFit()
         
-        let leftButtonHR = roundf(Float(textViewHeight) - Float(self.leftButton.frame.height))
-        let leftButtonMargin = roundf(leftButtonHR / 2.0)
+        let leftButtonHR = round(textViewHeight - self.leftButton.frame.height)
+        let leftButtonMargin = leftButtonHR / 2.0
         
-        let rightButtonHR = roundf(Float(textViewHeight) - Float(self.rightButton.frame.height))
-        let rightButtonMargin = roundf(rightButtonHR / 2.0)
+        let rightButtonHR = round(textViewHeight - self.rightButton.frame.height)
+        let rightButtonMargin = rightButtonHR / 2.0
 
         self.recipientView.setTranslatesAutoresizingMaskIntoConstraints(false)
         self.userContentView.setTranslatesAutoresizingMaskIntoConstraints(false)
@@ -235,11 +234,11 @@ class KeyboardInputView: UIView, UITextViewDelegate {
         self.leftButton.sizeToFit()
         self.rightButton.sizeToFit()
 
-        let leftButtonHR = roundf(Float(textViewHeight) - Float(self.leftButton.frame.height))
-        let leftButtonMargin = roundf(leftButtonHR / 2.0)
+        let leftButtonHR = round(textViewHeight - self.leftButton.frame.height)
+        let leftButtonMargin = leftButtonHR / 2.0
         
-        let rightButtonHR = roundf(Float(textViewHeight) - Float(self.rightButton.frame.height))
-        let rightButtonMargin = roundf(rightButtonHR / 2.0)
+        let rightButtonHR = round(textViewHeight - self.rightButton.frame.height)
+        let rightButtonMargin = rightButtonHR / 2.0
         
         self.inputToolBar.setTranslatesAutoresizingMaskIntoConstraints(false)
         self.inputTextView.setTranslatesAutoresizingMaskIntoConstraints(false)
@@ -288,11 +287,11 @@ class KeyboardInputView: UIView, UITextViewDelegate {
     
     func setupRecipientViewConstraints(){
         let rViewHeight = self.getRecipientHeight()
-        let leftButtonHR = roundf(Float(rViewHeight) - Float(self.toLabel.frame.height))
-        let leftButtonMargin = roundf(leftButtonHR / 2.0)
         
-        let rightButtonHR = roundf(Float(rViewHeight) - Float(self.recipientAddButton.frame.height))
-        let rightButtonMargin = roundf(rightButtonHR / 2.0)
+        let leftButtonHR = round(rViewHeight - self.toLabel.frame.height)
+        let leftButtonMargin = leftButtonHR / 2.0
+        let rightButtonHR = round(rViewHeight - self.recipientAddButton.frame.height)
+        let rightButtonMargin = rightButtonHR / 2.0
         
         self.toLabel.setTranslatesAutoresizingMaskIntoConstraints(false)
         self.recipientTextField.setTranslatesAutoresizingMaskIntoConstraints(false)
@@ -389,7 +388,7 @@ class KeyboardInputView: UIView, UITextViewDelegate {
         let kbDuration = info.objectForKey(UIKeyboardAnimationDurationUserInfoKey) as! NSTimeInterval
         let currKbEndSize = info.objectForKey(UIKeyboardFrameEndUserInfoKey)?.CGRectValue().size as CGSize!
         
-        self.scrollToBottomOfContent(true)
+        self.scrollToBottomOfContent(true, offset:currKbEndSize.height)
         UIView.animateWithDuration(kbDuration, animations: {
             self.controlView.transform = CGAffineTransformMakeTranslation(0,-currKbEndSize.height)
             self.userContentView.contentInset.bottom =  currKbEndSize.height

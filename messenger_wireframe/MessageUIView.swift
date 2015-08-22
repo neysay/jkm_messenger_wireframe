@@ -251,10 +251,10 @@ class MessageUIView: UIView {
         //compacts message size by delta
         for constraint in self.infoView.constraints() as! [NSLayoutConstraint]{
             if constraint.identifier == "footerHeight" {
-                if (heightDelta != nil) && (heightDelta <= self.footerSize){
-                    constraint.constant = heightDelta!
+                if let changeHeightTo = heightDelta where changeHeightTo <= self.footerSize {
+                    constraint.constant = changeHeightTo
                 }
-                else {
+                else if !constraint.constant.isZero {
                     constraint.constant = 0.0
                 }
             }
@@ -274,9 +274,7 @@ class MessageUIView: UIView {
         if self.constraints().count > 0 {
             return true
         }
-        else {
-            return false
-        }
+        return false
     }
     
     func setFooterData(content:String) {
@@ -315,7 +313,7 @@ class MessageUIView: UIView {
         if let currentImageView = destImageView.image, let image = sourceImage where currentImageView != image {
             destImageView.image = sourceImage
         }
-        else {
+        else if destImageView.image != self.defaultProfileImage {
             destImageView.image = self.defaultProfileImage
         }
     }
