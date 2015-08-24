@@ -46,10 +46,6 @@ class MessageUIView: UIView {
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
-    
-    deinit{
-        //println("MEssageUIView is being deinitialized")
-    }
 
     func configure() {
         self.layoutMargins.top = 0.0
@@ -58,7 +54,6 @@ class MessageUIView: UIView {
         
         self.setupViews()
         self.setupConstraints()
-        self.setClearColorForViews()
         self.footerView.textAlignment = NSTextAlignment.Center
         self.footerView.textColor = UIColor.lightGrayColor()
         self.footerView.font = UIFont.preferredFontForTextStyle(UIFontTextStyleFootnote)
@@ -68,51 +63,10 @@ class MessageUIView: UIView {
         self.messageView.layoutMargins.bottom = 0.0
 
         //For debugging only
+        //self.setClearColorForViews()
         //self.setUniqueColorForViews()
     }
     
-    
-    func setUniqueColorForViews(){
-        //Strictly for debugging purposes to visualize view layouts//
-        self.infoView.backgroundColor = UIColor.orangeColor()
-        
-        self.senderView.backgroundColor = UIColor.yellowColor()
-        self.senderImageView.backgroundColor = UIColor.grayColor()
-        self.senderCushion.backgroundColor = UIColor(red: 1.0, green: 169/255, blue: 209/255, alpha: 1.0)
-        
-        self.recieverView.backgroundColor = UIColor.yellowColor()
-        self.recieverImageView.backgroundColor = UIColor.grayColor()
-        self.recieverCushion.backgroundColor = UIColor(red: 1.0, green: 169/255, blue: 209/255, alpha: 1.0)
-        
-        self.footerView.backgroundColor = UIColor(red: 94/255.0, green: 88/255.0, blue: 153/255.0, alpha: 1.0)
-        self.messageView.backgroundColor = UIColor(red: 94/255.0, green: 223/255.0, blue: 124/255.0, alpha: 1.0)
-
-        self.senderBubbleView.backgroundColor = UIColor.greenColor()
-        self.recieverBubbleView.backgroundColor = UIColor.greenColor()
-        
-        self.senderDrawView.backgroundColor = UIColor.redColor()
-        self.recieverDrawView.backgroundColor = UIColor.redColor()
-        
-        self.senderBubbleCushion.backgroundColor = UIColor.blackColor()
-        self.recieverBubbleCushion.backgroundColor = UIColor.blackColor()
-    }
-    
-    func setClearColorForViews(){
-        self.infoView.backgroundColor = UIColor.clearColor()
-        
-        self.senderView.backgroundColor = UIColor.clearColor()
-        self.senderImageView.backgroundColor = UIColor.clearColor()
-        self.senderCushion.backgroundColor = UIColor.clearColor()
-        
-        self.recieverView.backgroundColor = UIColor.clearColor()
-        self.recieverImageView.backgroundColor = UIColor.clearColor()
-        self.recieverCushion.backgroundColor = UIColor.clearColor()
-        
-        self.footerView.backgroundColor = UIColor.clearColor()
-        self.messageView.backgroundColor = UIColor.clearColor()
-        self.senderBubbleView.backgroundColor = UIColor.clearColor()
-        self.recieverBubbleView.backgroundColor = UIColor.clearColor()
-    }
     
     func setupViews() {
         
@@ -247,7 +201,7 @@ class MessageUIView: UIView {
     
     }
     
-    func adjustMessageSize(heightDelta:CGFloat?) {
+    func adjustFooterSize(heightDelta:CGFloat?) {
         //compacts message size by delta
         for constraint in self.infoView.constraints() as! [NSLayoutConstraint]{
             if constraint.identifier == "footerHeight" {
@@ -261,7 +215,7 @@ class MessageUIView: UIView {
         }
     }
     
-    func revertMessageSize(heightDelta:CGFloat) {
+    func revertFooterSize(heightDelta:CGFloat) {
         for constraint in self.infoView.constraints() as! [NSLayoutConstraint]{
             if constraint.identifier == "footerHeight" {
                 constraint.constant = self.footerSize
@@ -315,5 +269,49 @@ class MessageUIView: UIView {
             destImageView.image = self.defaultProfileImage
         }
     }
+    
+    //-----Debug Purposes Only------//
+    private func setUniqueColorForViews(){
+        //Strictly for debugging purposes to visualize view layouts//
+        self.infoView.backgroundColor = UIColor.orangeColor()
+        
+        self.senderView.backgroundColor = UIColor.yellowColor()
+        self.senderImageView.backgroundColor = UIColor.grayColor()
+        self.senderCushion.backgroundColor = UIColor(red: 1.0, green: 169/255, blue: 209/255, alpha: 1.0)
+        
+        self.recieverView.backgroundColor = UIColor.yellowColor()
+        self.recieverImageView.backgroundColor = UIColor.grayColor()
+        self.recieverCushion.backgroundColor = UIColor(red: 1.0, green: 169/255, blue: 209/255, alpha: 1.0)
+        
+        self.footerView.backgroundColor = UIColor(red: 94/255.0, green: 88/255.0, blue: 153/255.0, alpha: 1.0)
+        self.messageView.backgroundColor = UIColor(red: 94/255.0, green: 223/255.0, blue: 124/255.0, alpha: 1.0)
+        
+        self.senderBubbleView.backgroundColor = UIColor.greenColor()
+        self.recieverBubbleView.backgroundColor = UIColor.greenColor()
+        
+        self.senderDrawView.backgroundColor = UIColor.redColor()
+        self.recieverDrawView.backgroundColor = UIColor.redColor()
+        
+        self.senderBubbleCushion.backgroundColor = UIColor.blackColor()
+        self.recieverBubbleCushion.backgroundColor = UIColor.blackColor()
+    }
+    
+    private func setClearColorForViews(){
+        self.infoView.backgroundColor = UIColor.clearColor()
+        
+        self.senderView.backgroundColor = UIColor.clearColor()
+        self.senderImageView.backgroundColor = UIColor.clearColor()
+        self.senderCushion.backgroundColor = UIColor.clearColor()
+        
+        self.recieverView.backgroundColor = UIColor.clearColor()
+        self.recieverImageView.backgroundColor = UIColor.clearColor()
+        self.recieverCushion.backgroundColor = UIColor.clearColor()
+        
+        self.footerView.backgroundColor = UIColor.clearColor()
+        self.messageView.backgroundColor = UIColor.clearColor()
+        self.senderBubbleView.backgroundColor = UIColor.clearColor()
+        self.recieverBubbleView.backgroundColor = UIColor.clearColor()
+    }
+    
     
 }

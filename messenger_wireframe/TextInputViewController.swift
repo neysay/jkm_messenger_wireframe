@@ -114,7 +114,7 @@ class TextInputViewController: UIViewController , UITableViewDataSource , UITabl
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 50
+        return 25
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {

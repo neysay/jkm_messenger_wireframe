@@ -312,8 +312,7 @@ class KeyboardInputView: UIView, UITextViewDelegate {
         
         constraints = NSLayoutConstraint.constraintsWithVisualFormat("H:|[recipientToolbar]|", options: NSLayoutFormatOptions(0), metrics: metrics as [NSObject : AnyObject], views: views as [NSObject : AnyObject])
         self.recipientView.addConstraints(constraints)
-        //toLabel.sizeToFit() seems to not set the label side properly
-        //manually setting width for now
+
         visualFormat = "H:|-(==hor)-[toLabel(25)]-(==hor)-[recipientText]-(==hor)-[recipientAdd]-(==hor)-|"
         constraints = NSLayoutConstraint.constraintsWithVisualFormat(visualFormat!, options: NSLayoutFormatOptions(0), metrics: metrics as [NSObject : AnyObject], views: views as [NSObject : AnyObject])
         self.recipientView.addConstraints(constraints)
