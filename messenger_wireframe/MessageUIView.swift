@@ -271,10 +271,7 @@ class MessageUIView: UIView {
     }
     
     func hasActiveConstraints() -> Bool {
-        if self.constraints().count > 0 {
-            return true
-        }
-        return false
+        return self.constraints().count > 0 ? true : false
     }
     
     func setFooterData(content:String) {
@@ -284,6 +281,7 @@ class MessageUIView: UIView {
         else {
             self.footerView.textAlignment = NSTextAlignment.Left
         }
+        
         self.footerView.text = content
     }
     
@@ -309,7 +307,7 @@ class MessageUIView: UIView {
 
     }
     
-    func _setProfileImage(destImageView:UIImageView!, sourceImage:UIImage?){
+    final private func _setProfileImage(destImageView:UIImageView!, sourceImage:UIImage?){
         if let currentImageView = destImageView.image, let image = sourceImage where currentImageView != image {
             destImageView.image = sourceImage
         }

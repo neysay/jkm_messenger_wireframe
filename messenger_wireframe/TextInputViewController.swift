@@ -97,19 +97,19 @@ class TextInputViewController: UIViewController , UITableViewDataSource , UITabl
 
         if !cell.hasActiveConstraints() {
             cell.configure()
-            srandom(UInt32(time(nil)))
-            
+            cell.messageItem.messageView.layoutIfNeeded()
+            cell.messageItem.messageView.layer.cornerRadius = 0.02 * cell.messageItem.messageView.bounds.size.width
         }
         
-        // Randomize the sender vs reciever choice
+        // Switch reciever and sender every other one
         // Just for display purposes
-        cell.messageItem.isSender = Bool((indexPath.row % 2) * (random() % 2))
+        cell.messageItem.isSender = Bool((indexPath.row % 2))
         cell.messageItem.setProfile(profileImage: nil)
+        
 
 
         //Just to look a little prettier//
-        cell.layoutIfNeeded()
-        cell.messageItem.messageView.layer.cornerRadius = 0.02 * cell.messageItem.messageView.bounds.size.width
+        
         return cell
     }
     

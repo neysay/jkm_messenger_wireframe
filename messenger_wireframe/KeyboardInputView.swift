@@ -30,7 +30,7 @@ class KeyboardInputView: UIView, UITextViewDelegate {
     //Set this if you want to lock text input height after a threshold
     //Update for vertical vs horizontal display
     // nil -> infinite max height
-    var maxInputTextHeight:CGFloat?
+    var maxInputTextHeight:CGFloat? = 100.0
     
     
     required init(coder aDecoder: NSCoder) {
@@ -143,12 +143,7 @@ class KeyboardInputView: UIView, UITextViewDelegate {
         newInputHeight = newInputHeight + (2 * CGFloat(KEYBOARD_INPUT_VIEW_MARGIN_VERTICAL))
         newInputHeight = ceil(newInputHeight)
 
-        if let maxHeight = self.maxInputTextHeight {
-            return floor(min(newInputHeight,maxHeight))
-        }
-        else {
-            return newInputHeight
-        }
+        return self.maxInputTextHeight != nil ? floor(min(newInputHeight,self.maxInputTextHeight!)) : newInputHeight
         
     }
     
@@ -161,15 +156,16 @@ class KeyboardInputView: UIView, UITextViewDelegate {
     }
     
     func getRecipientHeight() -> CGFloat {
-        var height:CGFloat = 0.0
-        if self.recipientView.hidden {
-            height = 0.0
-        }
-        else{
-            height = 35.0 // default
-        }
+        //var height:CGFloat = 0.0
+        //if self.recipientView.hidden {
+        //    height = 0.0
+        //}
+        //else{
+        //    height = 35.0 // default
+        //}
 
-        return height
+        //return height
+        return self.recipientView.hidden ? 0.0 : 35.0
     }
     
     func setupConstraints(){
