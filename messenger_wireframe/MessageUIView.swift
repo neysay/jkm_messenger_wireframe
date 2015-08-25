@@ -262,10 +262,16 @@ class MessageUIView: UIView {
     }
     
     final private func _setProfileImage(destImageView:UIImageView!, sourceImage:UIImage?){
-        if let currentImageView = destImageView.image, let image = sourceImage where currentImageView != image {
+        if let currentImageView = destImageView.image, let image = sourceImage where !currentImageView.isEqual(image) {
             destImageView.image = sourceImage
         }
-        else if destImageView.image != self.defaultProfileImage {
+        else if let currentImageView = destImageView.image where sourceImage == nil && !currentImageView.isEqual(self.defaultProfileImage) {
+            destImageView.image = self.defaultProfileImage
+        }
+        else if let image = sourceImage where destImageView.image == nil {
+            destImageView.image = sourceImage
+        }
+        else if destImageView.image == nil && sourceImage == nil {
             destImageView.image = self.defaultProfileImage
         }
     }

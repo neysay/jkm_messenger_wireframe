@@ -386,7 +386,8 @@ class KeyboardInputView: UIView, UITextViewDelegate {
         self.scrollToBottomOfContent(true, offset:currKbEndSize.height)
         UIView.animateWithDuration(kbDuration, animations: {
             self.controlView.transform = CGAffineTransformMakeTranslation(0,-currKbEndSize.height)
-            self.userContentView.contentInset.bottom =  currKbEndSize.height
+            //self.userContentView.contentInset.bottom =  currKbEndSize.height
+            self.userContentView.transform = CGAffineTransformMakeTranslation(0,-currKbEndSize.height)
             self.scrollToBottomOfContent(false,offset: currKbEndSize.height)
             }, completion: { _ in
                 self.keyboardHeight = currKbEndSize.height
@@ -399,7 +400,8 @@ class KeyboardInputView: UIView, UITextViewDelegate {
         let kbDuration = info.objectForKey(UIKeyboardAnimationDurationUserInfoKey) as! NSTimeInterval
         UIView.animateWithDuration(kbDuration, animations: {
             self.controlView.transform = CGAffineTransformMakeTranslation(0,0)
-            self.userContentView.contentInset.bottom = 0.0
+            self.userContentView.transform = CGAffineTransformMakeTranslation(0,0)
+            //self.userContentView.contentInset.bottom = 0.0
             //self.contentView.frame.size.height = self.controlView.frame.origin.y
             }, completion: { _ in
                 self.keyboardHeight = nil

@@ -99,6 +99,7 @@ class TextInputViewController: UIViewController , UITableViewDataSource , UITabl
             cell.configure()
             cell.messageItem.messageView.layoutIfNeeded()
             cell.messageItem.messageView.layer.cornerRadius = 0.02 * cell.messageItem.messageView.bounds.size.width
+            println("layout if needed")
         }
         
         // Switch reciever and sender every other one
